@@ -3,13 +3,14 @@
 {% block title %}LifeTrack - Home{% endblock %}
 
 {% block content %}
-<div class="card" style="text-align: center;">
-    <i class="fas fa-leaf" style="font-size: 4rem; color: #2ecc71; margin-bottom: 1rem;"></i>
-    <h1 style="color: #2c3e50; margin-bottom: 1rem;">Bem-vindo ao LifeTrack</h1>
-    
-    <p style="font-size: 1.2rem; color: #666; max-width: 600px; margin: 0 auto 2rem;">
-        Seu companheiro diário para desenvolver hábitos saudáveis e alcançar seus objetivos!
-    </p>
+<div class="card" style="text-align: center; max-width: 800px; margin: 0 auto;">
+    <div style="margin-bottom: 2rem;">
+        <i class="fas fa-leaf" style="font-size: 5rem; color: #2ecc71;"></i>
+        <h1 style="color: #2c3e50; margin: 1rem 0; font-size: 2.5rem;">LifeTrack</h1>
+        <p style="font-size: 1.2rem; color: #666; max-width: 600px; margin: 0 auto 2rem;">
+            Seu companheiro diário para desenvolver hábitos saudáveis e alcançar seus objetivos!
+        </p>
+    </div>
 
     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin: 3rem 0;">
         <div style="padding: 1.5rem;">
@@ -31,12 +32,12 @@
         </div>
     </div>
 
-    <div style="display: flex; gap: 1rem; justify-content: center;">
-        <a href="{{ url_for('login') }}" class="btn">
-            <i class="fas fa-sign-in-alt"></i> Entrar
+    <div style="display: flex; gap: 1.5rem; justify-content: center; margin-top: 2rem;">
+        <a href="{{ url_for('login') }}" class="btn" style="padding: 1rem 2.5rem; font-size: 1.1rem;">
+            <i class="fas fa-sign-in-alt"></i> Login
         </a>
-        <a href="{{ url_for('cadastro') }}" class="btn btn-outline">
-            <i class="fas fa-user-plus"></i> Criar Conta
+        <a href="{{ url_for('cadastro') }}" class="btn btn-outline" style="padding: 1rem 2.5rem; font-size: 1.1rem;">
+            <i class="fas fa-user-plus"></i> Cadastre-se
         </a>
     </div>
 </div>

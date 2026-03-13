@@ -22,9 +22,146 @@
             color: #2c3e50;
         }
 
+        /* ===== NAVBAR ===== */
+        .navbar {
+            background: white;
+            box-shadow: 0 2px 10px rgba(46, 204, 113, 0.2);
+            padding: 0.8rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 3px solid #2ecc71;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-brand i {
+            font-size: 1.8rem;
+            color: #2ecc71;
+        }
+
+        .nav-brand span {
+            color: #2c3e50;
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .nav-link {
+            color: #2c3e50;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-weight: 500;
+        }
+
+        .nav-link:hover {
+            background: #f0fff4;
+            color: #2ecc71;
+        }
+
+        .nav-link.active {
+            background: #2ecc71;
+            color: white;
+        }
+
+        .user-menu {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding-left: 15px;
+            border-left: 2px solid #e9ecef;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Avatar container - para foto ou ícone */
+        .avatar-container {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 2px solid #2ecc71;
+        }
+
+        .user-avatar {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Avatar placeholder com ícone de boneco */
+        .avatar-placeholder {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #2ecc71, #27ae60);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid #2ecc71;
+        }
+
+        .avatar-placeholder i {
+            font-size: 1.2rem;
+            color: white;
+        }
+
+        .user-name {
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .user-name small {
+            font-weight: normal;
+            color: #666;
+            font-size: 0.8rem;
+        }
+
+        .logout-btn {
+            background: #ff4757;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .logout-btn:hover {
+            background: #ee3a4a;
+            transform: translateY(-2px);
+        }
+
+        /* ===== LAYOUT PRINCIPAL ===== */
         .app-container {
             display: flex;
-            min-height: 100vh;
+            min-height: calc(100vh - 70px);
         }
 
         /* Sidebar */
@@ -41,29 +178,52 @@
             margin-bottom: 2rem;
         }
 
-        .foto-perfil {
+        /* Container da foto na sidebar */
+        .foto-container {
             width: 120px;
             height: 120px;
-            border-radius: 50%;
             margin: 0 auto 1rem;
-            border: 4px solid #2ecc71;
+            border-radius: 50%;
             overflow: hidden;
+            border: 4px solid #2ecc71;
             cursor: pointer;
             transition: transform 0.3s;
         }
 
-        .foto-perfil:hover {
+        .foto-container:hover {
             transform: scale(1.05);
         }
 
-        .foto-perfil img {
+        .foto-perfil-sidebar {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
 
+        /* Avatar placeholder na sidebar */
+        .avatar-placeholder-sidebar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #2ecc71, #27ae60);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            border: 4px solid #2ecc71;
+            transition: transform 0.3s;
+        }
+
+        .avatar-placeholder-sidebar:hover {
+            transform: scale(1.05);
+        }
+
+        .avatar-placeholder-sidebar i {
+            font-size: 3rem;
+            color: white;
+        }
+
         .nome-usuario {
-            font-size: 1.2rem;
             font-weight: 600;
             color: #2c3e50;
             margin-bottom: 0.5rem;
@@ -174,25 +334,6 @@
             transform: scale(1.05);
         }
 
-        .logout-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            background: #ff4757;
-            color: white;
-            text-decoration: none;
-            padding: 0.8rem;
-            border-radius: 8px;
-            margin-top: 2rem;
-            transition: all 0.3s;
-        }
-
-        .logout-btn:hover {
-            background: #ee3a4a;
-            transform: translateY(-2px);
-        }
-
         /* Main Content */
         .main-content {
             flex: 1;
@@ -288,6 +429,22 @@
         }
 
         @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                padding: 1rem;
+                gap: 1rem;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .user-menu {
+                border-left: none;
+                padding-left: 0;
+            }
+
             .app-container {
                 flex-direction: column;
             }
@@ -301,13 +458,66 @@
     </style>
 </head>
 <body>
+    <!-- ===== NAVBAR ===== -->
+    <nav class="navbar">
+        <a href="{{ url_for('index') }}" style="text-decoration: none;">
+            <div class="nav-brand">
+                <i class="fas fa-leaf"></i>
+                <span>LifeTrack</span>
+            </div>
+        </a>
+
+        <div class="nav-links">
+            <a href="{{ url_for('dashboard') }}" class="nav-link active">
+                <i class="fas fa-home"></i> Dashboard
+            </a>
+            <a href="{{ url_for('perfil') }}" class="nav-link">
+                <i class="fas fa-user"></i> Meu Perfil
+            </a>
+            
+            <div class="user-menu">
+                <div class="user-info">
+                    <!-- Avatar na navbar: foto ou ícone de boneco -->
+                    {% if foto_url and foto_url != 'default.png' %}
+                        <div class="avatar-container">
+                            <img src="{{ url_for('static', filename='fotos_perfil/' + foto_url) }}" 
+                                 alt="Avatar" class="user-avatar">
+                        </div>
+                    {% else %}
+                        <div class="avatar-placeholder">
+                            <i class="fas fa-user"></i>
+                        </div>
+                    {% endif %}
+                    
+                    <span class="user-name">
+                        {{ usuario }} <br>
+                        <small><i class="fas fa-circle" style="color: #2ecc71; font-size: 0.5rem;"></i> Online</small>
+                    </span>
+                </div>
+                <a href="{{ url_for('logout') }}" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i> Sair
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ===== CONTEÚDO PRINCIPAL ===== -->
     <div class="app-container">
         <!-- Sidebar -->
         <div class="sidebar">
             <div class="perfil-section">
-                <a href="{{ url_for('perfil') }}" class="foto-perfil">
-                    <img src="{{ url_for('static', filename='fotos_perfil/' + (foto_url if foto_url else 'default.png')) }}" 
-                         alt="Foto de Perfil">
+                <a href="{{ url_for('perfil') }}">
+                    <!-- Foto na sidebar: foto ou ícone de boneco -->
+                    {% if foto_url and foto_url != 'default.png' %}
+                        <div class="foto-container">
+                            <img src="{{ url_for('static', filename='fotos_perfil/' + foto_url) }}" 
+                                 alt="Foto de Perfil" class="foto-perfil-sidebar">
+                        </div>
+                    {% else %}
+                        <div class="avatar-placeholder-sidebar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                    {% endif %}
                 </a>
                 <div class="nome-usuario">
                     <i class="fas fa-user"></i> {{ usuario }}
@@ -341,7 +551,7 @@
                     </ul>
 
                     {% if habitos %}
-                        <button type="submit" class="btn" style="width: 100%;">
+                        <button type="submit" style="width: 100%; padding: 0.8rem; background: #2ecc71; color: white; border: none; border-radius: 8px; margin-top: 1rem; cursor: pointer;">
                             <i class="fas fa-save"></i> Salvar Progresso
                         </button>
                     {% endif %}
@@ -354,11 +564,6 @@
                     </button>
                 </form>
             </div>
-
-            <a href="{{ url_for('logout') }}" class="logout-btn">
-                <i class="fas fa-sign-out-alt"></i>
-                Sair
-            </a>
         </div>
 
         <!-- Main Content -->
@@ -368,7 +573,7 @@
                     <i class="fas fa-sun" style="color: #2ecc71;"></i>
                     Olá, {{ usuario }}!
                 </h1>
-                <p>{{ datetime.now().strftime('%d de %B de %Y') }}</p>
+                <p>{{ data_atual }}</p>
             </div>
 
             <div class="stats-grid">
@@ -396,34 +601,47 @@
                     </div>
                 </div>
 
+                <!-- Card de IMC com opção de atualizar -->
                 <div class="stat-card">
                     <h3>
                         <i class="fas fa-weight-scale"></i>
-                        IMC
+                        IMC (Índice de Massa Corporal)
                     </h3>
-                    <div class="stat-value">
-                        {% if peso > 0 and altura > 0 %}
-                            {{ "%.1f"|format(peso / ((altura/100) ** 2)) }}
-                        {% else %}
-                            -
-                        {% endif %}
-                    </div>
-                    <div class="stat-label">
-                        {% if peso > 0 and altura > 0 %}
-                            {% set imc = peso / ((altura/100) ** 2) %}
+                    
+                    {% if peso > 0 and altura > 0 %}
+                        <!-- Mostrar IMC calculado -->
+                        {% set imc = peso / ((altura/100) ** 2) %}
+                        <div class="stat-value">{{ "%.1f"|format(imc) }}</div>
+                        <div class="stat-label">
                             {% if imc < 18.5 %}
-                                Abaixo do peso
+                                <span style="color: #ffc107;">⚠️ Abaixo do peso</span>
                             {% elif imc < 25 %}
-                                Peso normal
+                                <span style="color: #2ecc71;">✅ Peso normal</span>
                             {% elif imc < 30 %}
-                                Sobrepeso
+                                <span style="color: #ff9800;">⚠️ Sobrepeso</span>
                             {% else %}
-                                Obesidade
+                                <span style="color: #ff4757;">⚠️ Obesidade</span>
                             {% endif %}
-                        {% else %}
-                            Atualize seus dados
-                        {% endif %}
-                    </div>
+                        </div>
+                        <div style="margin-top: 10px; font-size: 0.9rem; color: #666;">
+                            <i class="fas fa-weight"></i> Peso: {{ peso }} kg<br>
+                            <i class="fas fa-ruler-vertical"></i> Altura: {{ altura }} cm
+                        </div>
+                        <button onclick="mostrarFormDados()" class="btn-edit" style="margin-top: 10px;">
+                            <i class="fas fa-edit"></i> Atualizar dados
+                        </button>
+                    {% else %}
+                        <!-- Mostrar mensagem para atualizar dados -->
+                        <div style="text-align: center; padding: 15px;">
+                            <i class="fas fa-exclamation-circle" style="font-size: 2rem; color: #ffc107; margin-bottom: 10px;"></i>
+                            <p style="color: #666; margin-bottom: 15px;">
+                                Para calcular seu IMC, precisamos de alguns dados:
+                            </p>
+                            <button onclick="mostrarFormDados()" class="btn" style="background: #2ecc71; color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; display: inline-flex; align-items: center; gap: 8px;">
+                                <i class="fas fa-edit"></i> Atualizar meus dados
+                            </button>
+                        </div>
+                    {% endif %}
                 </div>
             </div>
 
@@ -463,6 +681,170 @@
             checkbox.addEventListener('change', function() {
                 this.closest('li').classList.toggle('habito-feito', this.checked);
             });
+        });
+    </script>
+    <!-- Modal para atualizar dados -->
+    <div id="modalDados" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close" onclick="fecharModalDados()">&times;</span>
+            <h3 style="margin-bottom: 20px; color: #2c3e50;">
+                <i class="fas fa-edit" style="color: #2ecc71;"></i>
+                Atualizar Dados
+            </h3>
+            
+            <form action="{{ url_for('atualizar_dados') }}" method="POST">
+                <div class="form-group">
+                    <label for="peso">
+                        <i class="fas fa-weight"></i> Peso (kg)
+                    </label>
+                    <input type="number" step="0.1" min="0" max="300" class="form-control" 
+                           id="peso" name="peso" value="{{ peso if peso > 0 else '' }}" 
+                           placeholder="Ex: 70.5" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="altura">
+                        <i class="fas fa-ruler-vertical"></i> Altura (cm)
+                    </label>
+                    <input type="number" step="1" min="0" max="250" class="form-control" 
+                           id="altura" name="altura" value="{{ altura if altura > 0 else '' }}" 
+                           placeholder="Ex: 170" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="objetivo">
+                        <i class="fas fa-bullseye"></i> Objetivo
+                    </label>
+                    <select class="form-control" id="objetivo" name="objetivo" required>
+                        <option value="" disabled {{ 'selected' if not objetivo else '' }}>Selecione seu objetivo</option>
+                        <option value="ganhar massa muscular" {{ 'selected' if objetivo == 'ganhar massa muscular' else '' }}>
+                            💪 Ganhar massa muscular
+                        </option>
+                        <option value="perder peso" {{ 'selected' if objetivo == 'perder peso' else '' }}>
+                            🏃 Perder peso
+                        </option>
+                        <option value="manter a saúde" {{ 'selected' if objetivo == 'manter a saúde' else '' }}>
+                            🧘 Manter a saúde
+                        </option>
+                        <option value="outro" {{ 'selected' if objetivo == 'outro' else '' }}>
+                            🎯 Outro objetivo
+                        </option>
+                    </select>
+                </div>
+                
+                <div class="btn-group" style="display: flex; gap: 10px; margin-top: 20px;">
+                    <button type="submit" class="btn" style="flex: 2; background: #2ecc71; color: white;">
+                        <i class="fas fa-save"></i> Salvar
+                    </button>
+                    <button type="button" class="btn" onclick="fecharModalDados()" 
+                            style="flex: 1; background: #f8f9fa; color: #2c3e50; border: 2px solid #2ecc71;">
+                        <i class="fas fa-times"></i> Cancelar
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <style>
+        /* Estilos do Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            animation: fadeIn 0.3s;
+        }
+        
+        .modal-content {
+            background-color: white;
+            margin: 10% auto;
+            padding: 30px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 5px 30px rgba(0,0,0,0.3);
+            position: relative;
+            animation: slideIn 0.3s;
+        }
+        
+        .close {
+            position: absolute;
+            right: 20px;
+            top: 15px;
+            font-size: 28px;
+            font-weight: bold;
+            color: #666;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        
+        .close:hover {
+            color: #ff4757;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        .btn-edit {
+            background: transparent;
+            color: #2ecc71;
+            border: 2px solid #2ecc71;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .btn-edit:hover {
+            background: #2ecc71;
+            color: white;
+            transform: translateY(-2px);
+        }
+    </style>
+
+    <script>
+        function mostrarFormDados() {
+            document.getElementById('modalDados').style.display = 'block';
+        }
+        
+        function fecharModalDados() {
+            document.getElementById('modalDados').style.display = 'none';
+        }
+        
+        // Fechar modal se clicar fora dele
+        window.onclick = function(event) {
+            var modal = document.getElementById('modalDados');
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        }
+        
+        // Fechar com tecla ESC
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                document.getElementById('modalDados').style.display = 'none';
+            }
         });
     </script>
 </body>

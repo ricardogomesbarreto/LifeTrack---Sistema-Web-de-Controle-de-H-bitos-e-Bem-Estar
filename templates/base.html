@@ -3,12 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}LifeTrack - Controle de Hábitos{% endblock %}</title>
+    <title>{% block title %}LifeTrack{% endblock %}</title>
     
-    <!-- Fontes Google -->
+    <!-- Fontes e Ícones -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Font Awesome para ícones -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <style>
@@ -25,39 +23,95 @@
             color: #2c3e50;
         }
 
-        .navbar {
-            background: #2ecc71;
+        /* Navbar para usuários NÃO logados */
+        .navbar-public {
+            background: white;
             padding: 1rem 2rem;
-            box-shadow: 0 2px 10px rgba(46, 204, 113, 0.2);
+            box-shadow: 0 2px 10px rgba(46, 204, 113, 0.1);
             display: flex;
             justify-content: space-between;
             align-items: center;
+            border-bottom: 3px solid #2ecc71;
         }
 
         .nav-brand {
             display: flex;
             align-items: center;
             gap: 10px;
+            text-decoration: none;
+            color: inherit;
         }
 
         .nav-brand i {
-            font-size: 1.8rem;
-            color: white;
+            font-size: 2rem;
+            color: #2ecc71;
         }
 
         .nav-brand span {
-            color: white;
+            color: #2c3e50;
             font-size: 1.5rem;
             font-weight: 600;
         }
 
+        .nav-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .nav-btn {
+            padding: 0.5rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-btn-login {
+            background: transparent;
+            color: #2ecc71;
+            border: 2px solid #2ecc71;
+        }
+
+        .nav-btn-login:hover {
+            background: #2ecc71;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .nav-btn-cadastro {
+            background: #2ecc71;
+            color: white;
+            border: 2px solid #2ecc71;
+        }
+
+        .nav-btn-cadastro:hover {
+            background: #27ae60;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(46, 204, 113, 0.3);
+        }
+
+        /* Navbar para usuários logados */
+        .navbar-logged {
+            background: white;
+            padding: 0.8rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 3px solid #2ecc71;
+            box-shadow: 0 2px 10px rgba(46, 204, 113, 0.1);
+        }
+
         .nav-links {
             display: flex;
+            align-items: center;
             gap: 20px;
         }
 
         .nav-link {
-            color: white;
+            color: #2c3e50;
             text-decoration: none;
             padding: 0.5rem 1rem;
             border-radius: 8px;
@@ -65,15 +119,67 @@
             display: flex;
             align-items: center;
             gap: 5px;
+            font-weight: 500;
         }
 
         .nav-link:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: translateY(-2px);
+            background: #f0fff4;
+            color: #2ecc71;
         }
 
-        .nav-link i {
+        .user-menu {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding-left: 20px;
+            border-left: 2px solid #e9ecef;
+        }
+
+        /* Avatar container - para foto ou ícone */
+        .avatar-container {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 2px solid #2ecc71;
+        }
+
+        .user-avatar {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Avatar placeholder com ícone de boneco */
+        .avatar-placeholder {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #2ecc71, #27ae60);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid #2ecc71;
+        }
+
+        .avatar-placeholder i {
             font-size: 1rem;
+            color: white;
+        }
+
+        .user-name {
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .logout-btn {
+            color: #ff4757;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .logout-btn:hover {
+            transform: scale(1.1);
         }
 
         .container {
@@ -171,10 +277,20 @@
         }
 
         @media (max-width: 768px) {
-            .navbar {
+            .navbar-public {
                 flex-direction: column;
                 gap: 1rem;
                 text-align: center;
+            }
+
+            .nav-buttons {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .navbar-logged {
+                flex-direction: column;
+                gap: 1rem;
             }
 
             .nav-links {
@@ -187,35 +303,64 @@
     {% block extra_css %}{% endblock %}
 </head>
 <body>
-    <nav class="navbar">
-        <div class="nav-brand">
+    <!-- Navbar para usuários NÃO logados -->
+    {% if not session.usuario_id %}
+    <nav class="navbar-public">
+        <a href="{{ url_for('index') }}" class="nav-brand">
             <i class="fas fa-leaf"></i>
             <span>LifeTrack</span>
-        </div>
-        <div class="nav-links">
-            {% if session.usuario_id %}
-                <a href="{{ url_for('dashboard') }}" class="nav-link">
-                    <i class="fas fa-home"></i> Dashboard
-                </a>
-                <a href="{{ url_for('perfil') }}" class="nav-link">
-                    <i class="fas fa-user"></i> Perfil
-                </a>
-                <a href="{{ url_for('logout') }}" class="nav-link">
-                    <i class="fas fa-sign-out-alt"></i> Sair
-                </a>
-            {% else %}
-                <a href="{{ url_for('index') }}" class="nav-link">
-                    <i class="fas fa-home"></i> Home
-                </a>
-                <a href="{{ url_for('login') }}" class="nav-link">
-                    <i class="fas fa-sign-in-alt"></i> Login
-                </a>
-                <a href="{{ url_for('cadastro') }}" class="nav-link">
-                    <i class="fas fa-user-plus"></i> Cadastro
-                </a>
-            {% endif %}
+        </a>
+        
+        <div class="nav-buttons">
+            <a href="{{ url_for('login') }}" class="nav-btn nav-btn-login">
+                <i class="fas fa-sign-in-alt"></i> Login
+            </a>
+            <a href="{{ url_for('cadastro') }}" class="nav-btn nav-btn-cadastro">
+                <i class="fas fa-user-plus"></i> Cadastre-se
+            </a>
         </div>
     </nav>
+    {% endif %}
+
+    <!-- Navbar para usuários logados -->
+    {% if session.usuario_id %}
+    <nav class="navbar-logged">
+        <a href="{{ url_for('index') }}" style="text-decoration: none;">
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <i class="fas fa-leaf" style="font-size: 1.8rem; color: #2ecc71;"></i>
+                <span style="color: #2c3e50; font-size: 1.3rem; font-weight: 600;">LifeTrack</span>
+            </div>
+        </a>
+        
+        <div class="nav-links">
+            <a href="{{ url_for('dashboard') }}" class="nav-link">
+                <i class="fas fa-home"></i> Dashboard
+            </a>
+            <a href="{{ url_for('perfil') }}" class="nav-link">
+                <i class="fas fa-user"></i> Perfil
+            </a>
+            
+            <div class="user-menu">
+                <!-- Avatar na navbar: foto ou ícone de boneco -->
+                {% if session.foto_perfil and session.foto_perfil != 'default.png' %}
+                    <div class="avatar-container">
+                        <img src="{{ url_for('static', filename='fotos_perfil/' + session.foto_perfil) }}" 
+                             alt="Avatar" class="user-avatar">
+                    </div>
+                {% else %}
+                    <div class="avatar-placeholder">
+                        <i class="fas fa-user"></i>
+                    </div>
+                {% endif %}
+                
+                <span class="user-name">{{ session.nome }}</span>
+                <a href="{{ url_for('logout') }}" class="logout-btn" title="Sair">
+                    <i class="fas fa-sign-out-alt"></i>
+                </a>
+            </div>
+        </div>
+    </nav>
+    {% endif %}
 
     <div class="container">
         {% with messages = get_flashed_messages(with_categories=true) %}
