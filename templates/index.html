@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}LifeTrack - Home{% endblock %}
+
+{% block content %}
+<div class="card" style="text-align: center;">
+    <i class="fas fa-leaf" style="font-size: 4rem; color: #2ecc71; margin-bottom: 1rem;"></i>
+    <h1 style="color: #2c3e50; margin-bottom: 1rem;">Bem-vindo ao LifeTrack</h1>
+    
+    <p style="font-size: 1.2rem; color: #666; max-width: 600px; margin: 0 auto 2rem;">
+        Seu companheiro diário para desenvolver hábitos saudáveis e alcançar seus objetivos!
+    </p>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin: 3rem 0;">
+        <div style="padding: 1.5rem;">
+            <i class="fas fa-check-circle" style="font-size: 2.5rem; color: #2ecc71; margin-bottom: 1rem;"></i>
+            <h3 style="margin-bottom: 0.5rem;">Registre Hábitos</h3>
+            <p style="color: #666;">Acompanhe seus hábitos diários e veja seu progresso</p>
+        </div>
+        
+        <div style="padding: 1.5rem;">
+            <i class="fas fa-chart-line" style="font-size: 2.5rem; color: #2ecc71; margin-bottom: 1rem;"></i>
+            <h3 style="margin-bottom: 0.5rem;">Monitore Progresso</h3>
+            <p style="color: #666;">Visualize sua evolução ao longo do tempo</p>
+        </div>
+        
+        <div style="padding: 1.5rem;">
+            <i class="fas fa-trophy" style="font-size: 2.5rem; color: #2ecc71; margin-bottom: 1rem;"></i>
+            <h3 style="margin-bottom: 0.5rem;">Alcance Metas</h3>
+            <p style="color: #666;">Receba dicas personalizadas para seus objetivos</p>
+        </div>
+    </div>
+
+    <div style="display: flex; gap: 1rem; justify-content: center;">
+        <a href="{{ url_for('login') }}" class="btn">
+            <i class="fas fa-sign-in-alt"></i> Entrar
+        </a>
+        <a href="{{ url_for('cadastro') }}" class="btn btn-outline">
+            <i class="fas fa-user-plus"></i> Criar Conta
+        </a>
+    </div>
+</div>
+{% endblock %}
